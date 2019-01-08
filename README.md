@@ -1,7 +1,7 @@
 # MNIST
 Handwritten int identifier based on the MNIST dataset; used in 2018 AI workshop at KCL 
 
-## Installation'
+## Installation
 
 * make sure you have Python 3.7 or newer
 	
