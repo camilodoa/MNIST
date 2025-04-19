@@ -13,14 +13,15 @@ import matplotlib.pyplot as plt
 import urllib.request as request
 import gzip
 import pickle
+import time
 
 
 #A bit of setup, to download MNIST
 filename = [
-["training_images","train-images-idx3-ubyte.gz"],
-["test_images","t10k-images-idx3-ubyte.gz"],
-["training_labels","train-labels-idx1-ubyte.gz"],
-["test_labels","t10k-labels-idx1-ubyte.gz"]
+    ["training_images","train-images-idx3-ubyte.gz"],
+    ["test_images","t10k-images-idx3-ubyte.gz"],
+    ["training_labels","train-labels-idx1-ubyte.gz"],
+    ["test_labels","t10k-labels-idx1-ubyte.gz"]
 ]
 
 def download_mnist():
@@ -60,7 +61,7 @@ init()
 x, y, _, _ = load()
 
 
-
+start = time.time()
 x_train = (x[:1000])/255
 y_train = y[:1000]
 
@@ -154,7 +155,7 @@ classifier = LinearClassifier(x_train.shape[1],10)
 scores, loss, gradients = classifier.loss('train', x_train, y_train)
 
 print('Initial loss '+ str(loss)) #initial loss
-print('Learner is training')
+print('Linear classifier is training')
 
 #tune this parameters and call the function classifier.train(...) to train the network,
 #than with classifier.loss(...) try to maximize the validation accuracy tweaking the
@@ -166,7 +167,9 @@ regularization_constant = 1
 l, losses = classifier.train(x_train, y_train, epochs, learning_rate, regularization_constant)
 
 
-print("learner is trained")
+end = time.time()
+length = end - start
+print("Linear classifier  is trained in ", length)
 
 plt.plot(losses)
 plt.title("is this loss?")
